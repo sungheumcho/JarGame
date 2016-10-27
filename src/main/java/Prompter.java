@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.Scanner;
 
 public class Prompter {
@@ -7,13 +6,16 @@ public class Prompter {
   private int mMaxNumber;
   private int mAnswer;
   
-  Console console = System.console();
+  //Console console = System.console();
   Jar jar = new Jar();
+  Scanner scanner = new Scanner(System.in);
   
   public void start() {
    System.out.printf("=========\n*Setting*\n=========\n");
-   mTypeOfItem = console.readLine("Enter the type of item:  ");
-   mMaxNumber = Integer.parseInt(console.readLine("Enter maximum number of items:  "));
+   System.out.printf("Enter the type of item:  ");
+   mTypeOfItem = scanner.nextLine();
+   System.out.printf("Enter maximum number of items:  ");
+   mMaxNumber = scanner.nextInt();
    mAnswer = promptRandomNumber();
    
    promptGuessNumber();
@@ -25,7 +27,7 @@ public class Prompter {
   }
   
   public void promptGuessNumber() {
-    Scanner scanner = new Scanner(System.in);
+    
     boolean checkSolved = false;
     int numberOfTries = 0;
     int attempts = 0;
@@ -46,7 +48,7 @@ public class Prompter {
       checkSolved = jar.guess(guessedNumber, mAnswer, mMaxNumber);
       
       } catch(IllegalArgumentException iae) {
-        console.printf("%s Please try agian.\n", iae.getMessage()); 
+        System.out.printf("%s Please try agian.\n", iae.getMessage()); 
         }
     }
 
